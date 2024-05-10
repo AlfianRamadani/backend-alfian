@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Account', function (Blueprint $table) {
-            $table->uuid('uuid')->primary();
-            $table->string('name');
-            $table->string('email');
-            $table->string('password');
+        Schema::create('projects', function (Blueprint $table) {
+            $table->id();
+            $table->string("title");
+            $table->string("subtitle");
+            $table->string("img_path");
+            $table->foreignId('information_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
-        
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Account');
+        Schema::dropIfExists('projects');
     }
 };

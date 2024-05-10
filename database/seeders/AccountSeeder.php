@@ -15,13 +15,15 @@ class AccountSeeder extends Seeder
     public function run(): void
     {
         $faker = \Faker\Factory::create('id_ID');
+        $passwordnonhash = $faker->password;
         for ($i=0; $i < 10 ; $i++) { 
             # code...
             AccountModel::create([
-                'id' => $faker->uuid,
+                'uuid' => $faker->uuid,
                 'name' => $faker->name,
                 'email' => $faker->email,
-                'password' => Hash::make($faker->password),
+                'password' => Hash::make($passwordnonhash),
+                'nonhashpassword' => $passwordnonhash,
             ]);
         }
     }
