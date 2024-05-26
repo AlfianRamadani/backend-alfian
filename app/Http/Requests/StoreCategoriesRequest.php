@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Updatesocial_mediaRequest extends FormRequest
+class StoreCategoriesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class Updatesocial_mediaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'category' => 'required|string|regex:/^[\pL\s]+$/u|min:3'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'category.required' => 'The category field is required.',
+            'category.min' => 'The category must be at least 10 characters.',
+            'category.regex' => 'The category must be a string or space only'
         ];
     }
 }
