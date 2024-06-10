@@ -1,15 +1,15 @@
 <?php
 
 use App\Helpers\ResponseFormatter;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\EducationController;
-use App\Http\Controllers\ExprerienceController;
-use App\Http\Controllers\FormController;
-use App\Http\Controllers\informationController;
-use App\Http\Controllers\JourneyController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProjectsController;
-use App\Http\Controllers\SocialMediaController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\EducationController;
+use App\Http\Controllers\Api\ExprerienceController;
+use App\Http\Controllers\Api\FormController;
+use App\Http\Controllers\Api\informationController;
+use App\Http\Controllers\Api\JourneyController;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\ProjectsController;
+use App\Http\Controllers\Api\SocialMediaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
