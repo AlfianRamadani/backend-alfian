@@ -1,7 +1,7 @@
 <?php
 
 use App\Helpers\ResponseFormatter;
-
+use App\Http\Controllers\Web\ContactFormViewController;
 use App\Http\Controllers\Web\SocialMediaViewController;
 use App\Http\Controllers\Web\EducationViewController;
 use App\Http\Controllers\Web\ExperienceViewController;
@@ -13,24 +13,22 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 Route::get('/login-page', function () {
     return view('login.index');
-    })->name("login_page");
-    Route::get('/register-page', function () {
-        return view('register.index');
-        })->name('register_page');
-    Route::put('set-active/{id}/information', [SetactivesController::class, 'setInformation']);
+})->name("login_page");
+Route::get('/register-page', function () {
+    return view('register.index');
+})->name('register_page');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
         return view('home');
     })->name("home");
     Route::resource('information', InformationViewController::class);
-
+    Route::put('set-active/{id}/information', [SetactivesController::class, 'setInformation'])->name('set_active_information');
     Route::resource('education', EducationViewController::class);
     Route::resource('experience', ExperienceViewController::class);
     Route::resource('social-media', SocialMediaViewController::class);
-    Route::resource('form', SocialMediaViewController::class);
+    Route::resource('form', ContactFormViewController::class);
     Route::resource('project', ProjectViewController::class);
-    
 });
 
 
