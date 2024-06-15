@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string("title");
             $table->string("featured_img");
             $table->string("description");
-            $table->foreignId("information_id")->constrained("informations")->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
