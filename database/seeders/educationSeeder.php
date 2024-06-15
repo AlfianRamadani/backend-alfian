@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Information;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,23 +15,27 @@ class educationSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table("education_journeys")->insert([
+        DB::table("educations")->insert([
             [
-                'title' => 'MTsN 2 Balikpapan',
-                'sub_title' => 'Lorem ipsum dolor sit.',
-                'period' => '2019-2022'
+                'school' => 'MTsN 2 Balikpapan',
+                'major' => 'Lorem ipsum dolor sit.',
+                'period' => '2019-2022',
             ],
             [
-                'title' => 'SMK Negeri 2 Balikpapan',
-                'sub_title' => 'Rekayasa Perangkat Lunak',
-                'period' => '2022-2025'
+                'school' => 'SMK Negeri 2 Balikpapan',
+                'major' => 'Rekayasa Perangkat Lunak',
+                'period' => '2022-2025',
+
             ],
             [
-                'title' => 'Institut Teknologi Bandung',
-                'sub_title' => 'Teknik Informatika',
-                'period' => '2025-2029'
+                'school' => 'Institut Teknologi Bandung',
+                'major' => 'Teknik Informatika',
+                'period' => '2025-2029',
+
             ]
+            
         ]);
+        
 
     }
 }
