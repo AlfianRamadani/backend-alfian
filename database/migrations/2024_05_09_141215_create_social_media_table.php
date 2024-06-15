@@ -16,15 +16,10 @@ return new class extends Migration
             $table->id();
             $table->string("platform");
             $table->string("link")->nullable();
-            $table->foreignId("information_id")->constrained("informations")->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 
-        SocialMedia::firstOrCreate([
-            "platform" => "dwa",
-            "link" => "https://www.facebook.com/AlfianRamadani777",
-            "information_id" => 1,
-        ]);
+      
     }
 
     /**
