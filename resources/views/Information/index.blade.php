@@ -48,7 +48,30 @@
                     <td>
                         <div class="d-flex flex-column" style="gap:0.5rem;">
 
-                            <a class="btn btn-primary" href="{{ route('information.show', $item->id) }}">View</a>
+                            <button class="btn btn-primary"  data-toggle="modal" data-target="#ShowInformationModal{{ $item->id }}">View</button>
+                                   <div class="modal fade" id="ShowInformationModal{{ $item->id }}" tabindex="-1"
+                                aria-labelledby="showInformationModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="showInformationModalLabel">View Detail
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                       
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <a class="btn btn-warning" href="{{ route('information.edit', $item->id) }}">Edit</a>
                             <button
                                 class="btn {{ $actives[0]['information_id'] == $item['id'] ? 'btn-secondary' : 'btn-danger' }} activate-information-btn"
