@@ -1,13 +1,13 @@
 <?php
 
 use App\Helpers\ResponseFormatter;
-use App\Http\Controllers\setInformation;
+
+use App\Http\Controllers\Web\SocialMediaViewController;
 use App\Http\Controllers\Web\EducationViewController;
 use App\Http\Controllers\Web\ExperienceViewController;
-use App\Http\Controllers\Web\FormSubmitController;
 use App\Http\Controllers\Web\InformationViewController;
+use App\Http\Controllers\Web\ProjectViewController;
 use App\Http\Controllers\Web\SetactivesController;
-use App\Http\Controllers\Web\TemplateController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
@@ -25,22 +25,17 @@ Route::middleware(['auth'])->group(function () {
     })->name("home");
     Route::resource('information', InformationViewController::class);
 
-    Route::get('/education', function () {
-        return view('education');
-    })->name("education");
-    Route::get('/experience', function () {
-        return view('experience');
-    })->name("experience");
-    Route::get('/social-media', function () {
-        return view('social_media');
-    })->name("social_media");
     Route::resource('education', EducationViewController::class);
     Route::resource('experience', ExperienceViewController::class);
+    Route::resource('social-media', SocialMediaViewController::class);
+    Route::resource('form', SocialMediaViewController::class);
+    Route::resource('project', ProjectViewController::class);
+    
 });
 
 
 
 
-// Route::fallback(function () {
-//     return ResponseFormatter::error(NULL, " Not Valid Route", 422);
-// });
+Route::fallback(function () {
+    return ResponseFormatter::error(NULL, " Not Valid Route", 422);
+});
