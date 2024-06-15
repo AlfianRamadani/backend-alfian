@@ -48,19 +48,113 @@
                     <td>
                         <div class="d-flex flex-column" style="gap:0.5rem;">
 
-                            <a class="btn btn-primary" href="{{ route('information.show', $item->id) }}">View</a>
+                            <button class="btn btn-primary" data-toggle="modal"
+                                data-target="#ShowInformationModal{{ $item->id }}">View</button>
+                            <div class="modal fade" id="ShowInformationModal{{ $item->id }}" tabindex="-1"
+                                aria-labelledby="showInformationModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="showInformationModalLabel">View Detail
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="NameRead">Name</label>
+                                                        <input disabled type="text" value="{{ $item->name }}"
+                                                            class="form-control" id="NameRead">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="CountryRead">Country</label>
+                                                        <input disabled type="text" value="{{ $item->country }}"
+                                                            class="form-control" id="CountryRead">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="EmailRead">Name</label>
+                                                        <input disabled type="email" value="{{ $item->email }}"
+                                                            class="form-control" id="EmailRead">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="positionRead">position</label>
+                                                        <input disabled type="text" value="{{ $item->position }}"
+                                                            class="form-control" id="positionRead">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Description1Read">Description 1</label>
+                                                    <input disabled type="text" class="form-control" id="Description1Read"
+                                                        value="{{ $item->description_1 }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Description2Read">Description 2</label>
+                                                    <input disabled type="text" class="form-control" id="Description2Read"
+                                                        value="{{ $item->description_2 }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Description3Read">Description 3</label>
+                                                    <input disabled type="text" class="form-control" id="Description3Read"
+                                                        value="{{ $item->description_3 }}">
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="ContactPersonRead">Contact Person</label>
+                                                        <input disabled type="type" value="{{ $item->contact_person }}"
+                                                            class="form-control" id="ContactPersonRead">
+                                                    </div>
+
+                                                </div>
+                                                  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="ProjectsDoneRead">Projects Done</label>
+      <input disabled type="text" value="{{ $item->projects_done }}" class="form-control" id="ProjectsDoneRead">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="ExperienceRead">Experience </label>
+      <input disabled type="text" value="{{ $item->projects_done }}" class="form-control" id="ExperienceRead">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="SatisficationRead">Satisfication </label>
+      <input disabled type="text" value="{{ $item->satisfication }}" class="form-control" id="SatisficationRead">
+    </div> 
+   
+   
+  </div>
+
+
+
+                                            </form>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <a class="btn btn-warning" href="{{ route('information.edit', $item->id) }}">Edit</a>
                             <button
                                 class="btn {{ $actives[0]['information_id'] == $item['id'] ? 'btn-secondary' : 'btn-danger' }} activate-information-btn"
-                                data-toggle="modal" data-target="#deleteInformationModal{{ $item->id }}" >Delete</button>
+                                data-toggle="modal"
+                                data-target="#deleteInformationModal{{ $item->id }}">Delete</button>
                             <div class="modal fade" id="deleteInformationModal{{ $item->id }}" tabindex="-1"
                                 aria-labelledby="deleteInformationModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteInformationModalLabel">Confirmation to delete
+                                            <h5 class="modal-title" id="deleteInformationModalLabel">Confirmation to
+                                                delete
                                             </h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -82,7 +176,8 @@
                             </div>
                             <button {{ $actives[0]['information_id'] == $item['id'] ? 'disabled' : '' }}
                                 class="btn  {{ $actives[0]['information_id'] == $item['id'] ? 'btn-secondary' : 'btn-primary' }} activate-information-btn"
-                                data-toggle="modal" data-target="#activateInformationModal" data-id="{{ $item['id'] }}">
+                                data-toggle="modal" data-target="#activateInformationModal{{ $item->id }}"
+                                data-id="{{ $item['id'] }}">
                                 {{ $actives[0]['information_id'] == $item['id'] ? 'Activated' : 'Active' }}</button>
                     </td>
                     <div class="modal fade" id="activateInformationModal{{ $item->id }}" tabindex="-1"
@@ -90,7 +185,8 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="activateInformationModalLabel">Confirmation to activate</h5>
+                                    <h5 class="modal-title" id="activateInformationModalLabel">Confirmation to activate
+                                    </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -101,7 +197,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <form method="POST" id="activate-information-form">
+                                    <form method="POST" action="{{ route('set_active_information', $item->id) }}">
                                         @method('PUT')
                                         @csrf
                                         <button type="submit" class="btn btn-primary">Yes, I'm sure</button>
