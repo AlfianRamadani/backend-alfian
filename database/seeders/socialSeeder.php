@@ -14,14 +14,30 @@ class socialSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table("social_media")->insert([
+        DB::table("social_medias")->insert([
             [
-                'linkedin' => 'https://www.linkedin.com/in/alfian-ramadani-993716...',
-                'facebook' => 'https://www.facebook.com/AlfianRamadani777',
-                'instagram' => 'https://www.instagram.com/_alfianramadani/',
-                'discord' => 'https://www.discord.com',
-                'twitter' => 'https://www.twitter.com',
-       
+                'platform' => 'linkedin',
+                'link' => 'https://www.linkedin.com/in/alfian-ramadani-993716...'
+            ],
+            [
+                'platform' => 'facebook' ,
+                'link' => 'https://www.facebook.com/AlfianRamadani777',
+            ],
+            [
+                'platform' => 'instagram',
+                'link' => 'https://www.instagram.com/alfianramadani777/'
+            ],
+            [
+                'platform' => 'discord',
+                'link' => 'https://discord.com/channels/@me/alfianramadani'
+            ],
+            [
+                'platform' => 'twitter',
+                'link' => 'https://twitter.com/alfianramadani77'
+            ],
+            [
+                'platform' => 'github',
+                'link' => 'https://github.com/AlfianRamadani'
             ]
         ]);
     }
