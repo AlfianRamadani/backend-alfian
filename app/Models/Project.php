@@ -10,7 +10,7 @@ class Project extends Model
     use HasFactory;
     protected $table = 'projects';
     protected $primaryKey = 'id';
-    protected $fillable = ["title", 'sub_title', 'img_path', "information_id"];
+    protected $fillable = ["title", 'description', 'featured_img'];
 
     public function information(){
         return $this->belongsTo(Information::class);
