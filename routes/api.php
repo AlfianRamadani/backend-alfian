@@ -3,13 +3,13 @@
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\EducationController;
-use App\Http\Controllers\Api\ExprerienceController;
+use App\Http\Controllers\Api\ExperienceController;
 use App\Http\Controllers\Api\FormController;
 use App\Http\Controllers\Api\informationController;
-use App\Http\Controllers\Api\JourneyController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\ProjectsController;
 use App\Http\Controllers\Api\SocialMediaController;
+use App\Models\Experience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -63,9 +63,9 @@ Route::controller(FormController::class)->group(function () {
     Route::get('/form', 'index');
 });
 
-Route::controller(JourneyController::class)->group(function () {
-    Route::get('/journey', 'index');
-    Route::put('/journey/{id}', 'update');
+Route::controller(ExperienceController::class)->group(function () {
+    Route::get('/experience', 'index');
+    Route::put('/experience/{id}', 'update');
 });
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/category', 'index');
