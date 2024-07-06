@@ -24,7 +24,7 @@ class ProjectsController extends Controller
     {
         $result = project::all();
         foreach ($result as $key => $value) {
-                $result[$key]["img_path"] = asset($value["img_path"]);
+                $result[$key]["featured_img"] = asset($value["featured_img"]);
         }
         if ($result) {
             return ResponseFormatter::success($result);
