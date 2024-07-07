@@ -16,8 +16,7 @@ class AllSeeder extends Seeder
         $this->call([
             educationSeeder::class,
             experienceSeeder::class,
-            experienceSeeder::class,
-            informationSeeder::class,
+            InformationSeeder::class,
             ProjectsSeeder::class
         ]);
     }
