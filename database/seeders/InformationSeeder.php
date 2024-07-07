@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Information;
+use Faker\Factory as Faker;
 
 class InformationSeeder extends Seeder
 {
@@ -14,6 +15,7 @@ class InformationSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
         $data = [
             [
                 "name" => "Alfian Ramadani",
@@ -28,7 +30,7 @@ class InformationSeeder extends Seeder
                 'projects_done' => 10,
                 "experience" => 2,
                 "satisfication" => 98,
-                "avatar" => fake()->imageUrl()
+                "avatar" => $faker->imageUrl()
             ],
             [
                 "name" => "Alfian Ramadana",
@@ -43,7 +45,7 @@ class InformationSeeder extends Seeder
                 'projects_done' => 10,
                 "experience" => 2,
                 "satisfication" => 98            ,
-                "avatar" => fake()->imageUrl()
+                "avatar" => $faker->imageUrl()
 
             ],
         ];
