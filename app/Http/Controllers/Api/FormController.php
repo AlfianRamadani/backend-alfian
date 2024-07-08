@@ -15,9 +15,14 @@ class FormController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function index()
+    {
+        $form = form::all();
+        return ResponseFormatter::success($form, 'Data form berhasil diambil');
+        }
     public function store(Request $request)
     {
-        $form = new form();
+        $form = new Form();
         $form->name = $request->name;
         $form->email = $request->email;
         $form->description = $request->description;

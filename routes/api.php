@@ -5,7 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\EducationController;
 use App\Http\Controllers\Api\ExperienceController;
 use App\Http\Controllers\Api\FormController;
-use App\Http\Controllers\Api\informationController;
+use App\Http\Controllers\Api\InformationController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\ProjectsController;
 use App\Http\Controllers\Api\SocialMediaController;
@@ -27,7 +27,7 @@ Route::fallback(function () {
     return ResponseFormatter::error(NULL, " Not Valid Route");
 });
 
-Route::controller(informationController::class)->group(function () {
+Route::controller(InformationController::class)->group(function () {
     Route::get('/information', 'index');
     Route::get('/information/{id}', 'show');
     Route::post('/information', 'store');

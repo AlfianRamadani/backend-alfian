@@ -52,7 +52,7 @@ class InformationController extends Controller
             return ResponseFormatter::error(NULL, "Error Uploading File", 400);
         }
         try {
-            $information = new information();
+            $information = new Information();
             $information->name = "Alfian Ramadani";
             $information->position = "Fullstack Developer";
             $information->projects_done = 15;
@@ -73,7 +73,7 @@ class InformationController extends Controller
     public function show(Request $request)
     {
    
-            $result = information::findOrFail($request->id);
+            $result = Information::findOrFail($request->id);
             return ResponseFormatter::success($result, "Successfully Getting Data");
     
     }
@@ -85,7 +85,7 @@ class InformationController extends Controller
     {
         try {
             $fileName = "";
-            $selected = information::findOrFail($request->id);
+            $selected = Information::findOrFail($request->id);
             if ($request->hasFile('avatar')) {
                 $fileName = time() . '.' . $request->file("avatar")->extension();
                 $uploadingFile = Handling::Upload($fileName, $request->file("avatar"), 'public/avatar');
@@ -108,7 +108,7 @@ class InformationController extends Controller
     public function destroy(string $id)
     {
         try {
-            $selected = information::findOrFail($id);
+            $selected = Information::findOrFail($id);
             $selected->delete();
             return ResponseFormatter::success(NULL,"Data Delete Successfully");
 

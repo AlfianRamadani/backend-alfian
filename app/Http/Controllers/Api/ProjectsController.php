@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Helpers\Handling;
 use App\Helpers\ResponseFormatter;
 
-use App\Models\project;
+use App\Models\Project;
 use App\Http\Requests\StoreprojectsRequest;
 use App\Http\Requests\UpdateprojectsRequest;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $result = project::all();
+        $result = Project::all();
         foreach ($result as $key => $value) {
                 $result[$key]["featured_img"] = asset($value["featured_img"]);
         }
@@ -53,7 +53,7 @@ class ProjectsController extends Controller
         }
         
         try {
-            $projects = new project();
+            $projects = new Project();
             $projects->title = $request->title;
             $projects->subtitle = $request->subtitle;
             $projects->img_path = $path;
@@ -72,7 +72,7 @@ class ProjectsController extends Controller
      */
     public function show(string $id)
     {
-        $result = project::findOrFail($id);
+        $result = Project::findOrFail($id);
         return ResponseFormatter::success($result, "Successfully Getting Data");
     }
 
@@ -84,7 +84,7 @@ class ProjectsController extends Controller
     {
         try {
             $fileName = "";
-            $selected = project::findOrFail($request->id);
+            $selected = Project::findOrFail($request->id);
             if ($request->hasFile('projects')) {
                 try {
                     storage::delete($request->img_path);
@@ -115,7 +115,7 @@ class ProjectsController extends Controller
     public function destroy(string $id)
     {
         try {
-            $selected = project::findOrFail($id);
+            $selected = Project::findOrFail($id);
             $selected->delete();
             return ResponseFormatter::success("Data Delete Successfully");
         } catch (\Throwable $th) {
