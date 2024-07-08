@@ -10,9 +10,7 @@ use App\Helpers\ResponseFormatter;
 use App\Models\information;
 use Illuminate\Support\Facades\Validator;
 use App\Models\setactives;
-
-
-
+use Illuminate\Support\Facades\Storage;
 
 class InformationController extends Controller
 {
@@ -83,22 +81,42 @@ class InformationController extends Controller
      */
     public function update(Request $request)
     {
+        // Validasi input
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:information,id',
+            'avatar' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048', // Sesuaikan dengan kebutuhan Anda
+            // Tambahkan aturan validasi lainnya sesuai kebutuhan
+        ]);
+
+        if ($validator->fails()) {
+            return ResponseFormatter::error($validator->errors(), "Validation Error", 422);
+        }
+
         try {
             $fileName = "";
             $selected = Information::findOrFail($request->id);
+
             if ($request->hasFile('avatar')) {
-                $fileName = time() . '.' . $request->file("avatar")->extension();
-                $uploadingFile = Handling::Upload($fileName, $request->file("avatar"), 'public/avatar');
+                $file = $request->file('avatar');
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+
+                // Upload file
+                $uploadingFile = Storage::putFileAs('public/avatar', $file, $fileName);
                 if (!$uploadingFile) {
-                    return ResponseFormatter::error(NULL, "Error Uploading File", 400);
+                    return ResponseFormatter::error(NULL, "Error Uploading File", 500);
                 }
+
+                // Simpan nama file ke database
+                $selected->avatar = $fileName;
             }
-            $selected->fill($request->all());
+
+            // Isi data yang lain
+            $selected->fill($request->except('avatar'));
             $selected->save();
-            
-            return ResponseFormatter::success(NULL,"Data Update Successfully");
-        } catch (\Throwable $th) {
-            return ResponseFormatter::error(NULL, "Error Updating Data", 400);
+
+            return ResponseFormatter::success(NULL, "Data Updated Successfully");
+        } catch (\Exception $e) {
+            return ResponseFormatter::error($e->getMessage(), "Error Updating Data", 500);
         }
     }
 
