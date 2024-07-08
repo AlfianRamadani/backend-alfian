@@ -17,7 +17,9 @@ class AllSeeder extends Seeder
             educationSeeder::class,
             experienceSeeder::class,
             InformationSeeder::class,
-            ProjectsSeeder::class
+            ProjectsSeeder::class,
+            UserSeeder::class,
+            SetactivesSeeder::class
         ]);
     }
 }
